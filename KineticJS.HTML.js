@@ -11,18 +11,14 @@
             d.style.display="inline-block";
             document.body.insertBefore(d, document.body.childNodes[0]);
             var size = d.getBoundingClientRect();
-            //d.parentNode.removeChild(d);
+            d.parentNode.removeChild(d);
             var template = this.__template.replace(/{width}/g,size.width+"px").replace(/{height}/g,size.height+"px").replace("{html}",config.html || "");
-            console.log(template, size);           
-            //var d = document.createElement("div");
-            //d.innerHTML = template;
-            //document.body.insertBefore(d, document.body.childNodes[0]);
             var DOMURL = self.URL || self.webkitURL || self;
             var img = new Image();
             var svg = new Blob([template], {type: "image/svg+xml;charset=utf-8"});
             var url = DOMURL.createObjectURL(svg);
             var _this = this;
-                                      Kinetic.Image.prototype.___init.call(this, config);
+            Kinetic.Image.prototype.___init.call(this, config);
             img.onload = function() {
                 _this.setImage(img);
                 config.callback();
